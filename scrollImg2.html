@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title>图片轮播2</title>
+</head>
+<style>
+    .scroll-container {
+        position: relative;
+        width: 400px;
+        height: 300px;
+        overflow: hidden;
+    }
+    .scroll-imgs {
+        height: 100%;
+    }
+
+    .scroll-imgs li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 400px;
+        height: 100%;
+        transition: all .5s;
+        opacity: 0;
+    }
+
+    .scroll-imgs li.active {
+        opacity: 1;
+    }
+
+    .scroll-imgs li>img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .scroll-btn {
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 24px;
+        border-radius: 50%;
+        background-color: #666;
+        opacity: .5;
+        color: #fff;
+    }
+
+    .scroll-prevbtn {
+        left: 15px;
+    }
+
+    .scroll-nextbtn {
+        right: 15px;
+    }
+
+    .btn-container {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 24px;
+        text-align: center;
+    }
+
+    .btn-container>li {
+        display: inline-block;
+        width: 30px;
+        height: 6px;
+        margin: 0 5px;
+        border-radius: 3px;
+        background-color: #666;
+        opacity: .5;
+        cursor: pointer;
+        transition: all .5s;
+    }
+
+    .btn-container>li.active {
+        background-color: #fff;
+    }
+</style>
+
+<body>
+    <div class="scroll-container">
+        <ul class="scroll-imgs">
+            <li class="active">
+                <img src="image/1.jpg" alt="">
+            </li>
+            <li>
+                <img src="image/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="image/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="image/4.jpg" alt="">
+            </li>
+        </ul>
+        <a href="" class="scroll-btn scroll-prevbtn">&lt;</a>
+        <a href="" class="scroll-btn scroll-nextbtn">&gt;</a>
+        <ul class="btn-container">
+            <li class="active" data-index="0"></li>
+            <li data-index="1"></li>
+            <li data-index="2"></li>
+            <li data-index="3"></li>
+        </ul>
+    </div>
+    <script>
+        var currentIndex = 0;
+        var $imgs = $('.scroll-imgs');
+        var $prev = $('.scroll-prevbtn'); //前进后退按钮
+        var $next = $('.scroll-nextbtn');
+        var originLength = $imgs.children().length; //容器内图片元素的初始数量
+        var $barsBtn = $('.btn-container li')
+        $prev.click(function (e) {
+            e.preventDefault();
+           changeImg(-1);
+        })
+        $next.click(function (e) {
+            e.preventDefault();
+            changeImg(1);
+        })
+
+        function changeImg(dir) {
+            $imgs.children().removeClass('active');
+            $barsBtn.removeClass('active');
+            currentIndex += dir;
+            if (currentIndex === -1) {
+                currentIndex = originLength - 1;
+            }
+            if (currentIndex === originLength) {
+                currentIndex = 0;
+            }
+            console.log(currentIndex)
+            $imgs.children().eq(currentIndex).addClass('active')
+            $barsBtn.eq(currentIndex).addClass('active')
+        }
+
+        $barsBtn.click(function(){
+            var index = $(this).attr('data-index');
+            if(index===currentIndex) return;
+            changeImg(index-currentIndex)
+        })
+    </script>
+</body>
+
+</html>

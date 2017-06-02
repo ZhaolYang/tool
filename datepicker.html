@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    <title>原生js实现日期选择器</title>
+</head>
+<style>
+#datepicker {
+    margin: 20px;
+    padding: 0 20px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.datepicker-wrapper {
+    width: 300px;
+}
+
+.datepicker-header {
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    background-color: green;
+}
+
+.datepicker-header>a {
+    width: 40px;
+    height: 40px;
+    color: #ccc;
+}
+
+.prev-btn {
+    float: left;
+}
+
+.next-btn {
+    float: right;
+}
+
+.datepicker-body {
+    width: 100%;
+}
+
+.datepicker-body th,
+.datepicker-body td {
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.datepicker-body thead {
+    background-color: #f5f5f5;
+    color: #666;
+}
+</style>
+
+<body>
+    <input id="datepicker" type="text" name="">
+    <!-- <div class="datepicker-wrapper">
+        <div class="datepicker-header">
+            <a class="prev-btn" href="#">&lt;</a>
+            <span>2017年6月</span>
+            <a class="next-btn" href="#">&gt;</a>
+        </div>
+        <table class="datepicker-body">
+            <thead>
+                <tr>
+                    <th>日</th>
+                    <th>一</th>
+                    <th>二</th>
+                    <th>三</th>
+                    <th>四</th>
+                    <th>五</th>
+                    <th>六</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>31</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    <script>
+    function DatePicker(ct) {
+        this.ct = ct;
+
+        this.init();
+    }
+
+    DatePicker.prototype = {
+        init: function() {
+            var _this = this;
+            this.ct.onfocus = function() {
+                _this.renderCalendar();
+            }
+        },
+        renderCalendar: function() {
+            // 先获取日历数据
+            var dateInfo = this.getDateInfo();
+
+            // 再根据日立数据渲染日历
+            var html = this.getCalendar(dateInfo);
+            var calendar = document.querySelector('.datepicker-wrapper');
+            if (!calendar) {
+                calendar = document.createElement('div');
+                calendar.className = 'datepicker-wrapper';
+                document.body.appendChild(calendar);
+            }
+            calendar.innerHTML = html;
+            // 日历按钮绑定
+        },
+        getDateInfo: function() {
+            var calendarData = {};
+            var ret = [];
+
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var date = today.getDate();
+            var day = today.getDay();
+            // 本月最后一天，几天
+            var lastDate = new Date(year, month, 0);
+            var lastDay = lastDate.getDay();
+            var thisMonthTotalDays = lastDate.getDate();
+            // 上个月显示几天,假如今天周四，则上月显示四天
+            var lastMonthShowDays = day;
+            var lastMonthTotalDays = new Date(year, month - 1, 0).getDate();
+            // 下个月显示几天，加入今天周四，下个月显示2天
+            var nextMonthShowDays = 6 - lastDay;
+
+            for (var i = 0; i < lastMonthShowDays; i++) {
+                ret.push(lastMonthTotalDays - lastMonthShowDays + i + 1);
+            }
+            for (var i = 0; i < thisMonthTotalDays; i++) {
+                ret.push(i + 1);
+            }
+            for (var i = 0; i < nextMonthShowDays; i++) {
+                ret.push(i + 1);
+            }
+            return ret;
+        },
+        getCalendar: function(data) {
+            var html = '<div class="datepicker-header">' + '<a class="prev-btn" href="#">&lt;</a>' + '<span>2017年6月</span>' + '<a class="next-btn" href="#">&gt;</a>' + '</div>' + '<table class="datepicker-body">' + '<thead>' + '<tr>' + '<th>日</th>' + '<th>一</th>' + '<th>二</th>' + '<th>三</th>' + '<th>四</th>' + '<th>五</th>' + '<th>六</th>' + '</tr>' + '</thead>' + '<tbody>';
+            for (var i = 0; i < data.length; i++) {
+                if (i % 7 === 0) {
+                    html += '<tr>'
+                }
+                html += '<td>' + data[i] + '</td>';
+                if (i % 7 === 6) {
+                    html += '</tr>'
+                }
+            }
+            html += '</tbody>' + '</table>';
+            return html;
+        }
+    }
+
+    var ct = document.querySelector('#datepicker');
+    new DatePicker(ct);
+    </script>
+</body>
+
+</html>

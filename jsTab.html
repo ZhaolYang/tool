@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    <title>原生jsTab组件</title>
+</head>
+<style>
+    .tab-container {
+        width: 500px;
+        margin: 50px auto;
+    }
+
+    .tab-hd:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .hd-item {
+        float: left;
+        line-height: 30px;
+        padding: 0 20px;
+        border: 1px solid;
+        cursor: pointer;
+    }
+
+    .hd-item.active {
+        background-color: #f67300;
+        color: #fff;
+    }
+
+    .bd-item {
+        display: none;
+        height: 300px;
+        border: 1px solid;
+    }
+
+    .bd-item.active {
+        display: block;
+    }
+</style>
+<body>
+    <div class="tab-container">
+        <div class="tab-hd">
+            <span class="hd-item">hd1</span>
+            <span class="hd-item">hd2</span>
+            <span class="hd-item">hd3</span>
+        </div>
+        <div class="tab-bd">
+            <div class="bd-item">内容1</div>
+            <div class="bd-item">内容2</div>
+            <div class="bd-item">内容3</div>
+        </div>
+    </div>
+
+    <script>
+        function tabView(cfg){
+            this.hdDom = cfg.hd,
+            this.bdDom = cfg.bd,
+            this.activeClass = cfg.activeClass;
+            this.currentIndex = cfg.currentIndex || 0;
+            this.type = cfg.type || 'click';
+            this.hd = document.querySelectorAll(this.hdDom);
+            this.bd = document.querySelectorAll(this.bdDom);
+            this.init();
+        }
+
+        tabView.prototype = {
+            init: function(){
+                var _this = this;
+                [].forEach.call(_this.hd,function(e,i){
+                    e.classList.remove(_this.activeClass);
+                    _this.bd[i].classList.remove(_this.activeClass);
+                })
+                this.hd[this.currentIndex].classList.add(this.activeClass);
+                this.bd[this.currentIndex].classList.add(this.activeClass);
+
+                this.bind(this.type);
+            },
+            bind: function(type){
+                var _this = this;
+                [].forEach.call(this.hd,function(e,idx){
+                    e['on'+_this.type] = function(){
+                        for(var i=0;i<_this.hd.length;i++){
+                            _this.hd[i].classList.remove('active');
+                            _this.bd[i].classList.remove('active');
+                        }
+                        this.classList.add('active');
+                        _this.bd[idx].classList.add('active');
+                    }
+                })
+            }
+        }
+
+        new tabView({
+            hd: '.hd-item',
+            bd: '.bd-item',
+            activeClass: 'active',
+            currentIndex: 1,
+            type: 'mouseover'
+        })
+    </script>
+</body>
+</html>

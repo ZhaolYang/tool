@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    <title>原生js曝光组件</title>
+</head>
+<style>
+    .content {
+        margin: 20px;
+        height: 2000px;
+        border: 1px solid #f67300;
+    }
+
+    .item {
+        margin: 30px;
+        transition: all 1s;
+    }
+
+    .change {
+        width: 500px;
+        margin: 50px auto;
+        text-align: center;
+        border: 1px solid #f67300;
+        border-radius: 20px;
+    }
+</style>
+<body>
+    <div class="content">
+        
+    </div>
+    <p class="item">呀！被曝光了！启动超级变换形态！</p>
+</body>
+<script>
+    function Exposure(dom,callback){
+        this.dom = dom;
+        this.callback =callback;
+        this.init();
+    }
+
+    Exposure.prototype = {
+        init: function(){
+            this.bind();
+        },
+        bind: function(){
+            var _this = this;
+            window.onscroll = function(){
+                if(_this.isShow()){
+                    _this.callback();
+                }
+                console.log(_this.isShow())
+            }
+        },
+        isShow: function(){
+            var scrollTop = window.scrollY;
+            var windowHeight = window.innerHeight;
+            var domHeight = this.dom.offsetHeight;
+            var offsetTop = this.dom.offsetTop;
+            if(windowHeight + scrollTop > offsetTop && scrollTop < offsetTop + domHeight){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    }
+
+    var dom = document.querySelector('p');
+    new Exposure(dom,function(){
+        dom.classList.add('change')
+    })
+</script>
+</html>
