@@ -1,7 +1,7 @@
 requirejs.config({
     baseUrl: 'js',
     paths: {
-        'jquery': 'http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min'
+        'jquery': 'https://apps.bdimg.com/libs/jquery/1.11.1/jquery.min'
     }
 })
 
@@ -37,9 +37,6 @@ requirejs(['jquery', 'goTop', 'imgScroll', 'lazyLoad', 'waterFull'], function($,
                     $(li).html('<img src="' + imgData[i] + '">');
                     $imgCt.append(li);
                 }
-                // setTimeout(function() {
-                //     new waterFull($('.img-item'));
-                // }, 1000)
                 var $imgs = $('.steps-wrapper').find('img').not('.loaded');
                 var num = $imgs.length;
                 $imgs.load(function() {
