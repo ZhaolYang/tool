@@ -1,0 +1,399 @@
+#header {
+    height: 757px;
+}
+
+.web-name {
+    float: left;
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: bold;
+    font-style: italic;
+    color: #666;
+}
+
+.nav {
+    float: right;
+}
+
+.nav>li {
+    display: inline-block;
+}
+
+.nav>li>a {
+    margin: 10px;
+    padding: 0 10px;
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    line-height: 30px;
+    background: #ADDCC8;
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.nav>li>a:hover {
+    background-color: #f67300
+}
+
+.wlecome>h2 {
+    /*margin: 100px 120px 0;*/
+    border-radius: 26px;
+    text-align: center;
+    font-size: 40px;
+    font-style: italic;
+    color: #333;
+    background-color: rgba(230,255,253,.7);
+}
+
+.wlecome>a,
+input[type="submit"] {
+    margin: 400px auto 0;
+    display: block;
+    width: 67px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    border-radius: 40px;
+    padding:  0 20px;
+    cursor: pointer;
+    transition: all .5s;
+    background-color: rgb(230,255,253);
+    color: #333;
+    text-align: center;
+}
+
+.wlecome>a:hover,
+input[type="submit"]:hover {
+    background-color: #f67300;
+    color: #fff;
+}
+
+.leader-info {
+    padding: 150px 0;
+}
+
+.item-title {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.leader-info>ul {
+    margin-top: 100px;
+}
+
+.info-item {
+    float: left;
+    width: 33.333333%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.info-item>h2 {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    line-height: 150px;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: rgba(230,255,253,.7);
+}
+
+.info-item>h3 {
+    font-size: 20px;
+    margin: 20px;
+}
+
+.info-item>p {
+    color: #ccc;
+    margin: 0 20px;
+    line-height: 2;
+}
+
+.members {
+    padding: 150px 0;
+    background-color: #f7f7f7;
+}
+
+.sailors {
+    margin-right: -18px;
+}
+
+.sailor {
+    position: relative;
+    float: left;
+    width: 320px;
+    height: 400px;
+    margin-right: 18px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.sailor>img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: -40px;
+}
+
+.sailor-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    opacity: 0;
+    text-align: center;
+    background-color: rgba(230,255,253,.7);
+}
+
+.sailor:hover .sailor-info {
+    opacity: 1;
+}
+
+.sailor-info>img {
+    margin-top: 100px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.sailor-info>p {
+    line-height: 1.8;
+    margin-top: 40px;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+.adventure {
+    padding: 150px 0;
+}
+
+.time-line {
+    margin-top: 40px;
+    position: relative;
+}
+
+.time-line:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    width: 2px;
+    background-color: #ccc;
+    z-index: -1;
+
+}
+
+.story-item {
+    margin-bottom: 80px;
+}
+
+.item-word {
+    width: 414px;
+    box-sizing: border-box;
+    line-height: 2;
+}
+
+.left-align .item-img {
+    float: left;
+}
+
+.item-img>img {
+    width: 160px;
+    height: 160px;
+    border: 5px solid #ccc;
+    border-radius: 50%;
+}
+
+.left-align .item-word {
+    float: left;
+    padding-right: 30px;
+    text-align: right;
+}
+
+.item-word>h3 {
+    font-size: 24px;
+    color: #666;
+}
+
+.item-word>h4 {
+    font-size: 20px;
+    color: #666;
+}
+
+.item-word>p {
+    color: #f67280;
+}
+
+.right-align .item-img {
+    float: right;
+}
+
+.right-align .item-word {
+    float: right;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.story-item.mid-align {
+    text-align: center;
+}
+
+.story-item.mid-align>.item-img {
+    position: relative;
+    top: 10px;
+    display: inline-block;
+}
+
+/*我们的脚印*/
+.steps {
+    padding: 150px 0;
+    background-color: #f7f7f7;
+}
+
+.steps-wrapper {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.steps-wrapper>li {
+    position: absolute;
+    width: 25%;
+    transition: all .3s;
+}
+
+.steps-wrapper>li>img {
+    display: block;
+}
+
+.get-more {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+}
+
+/*加入我们吧*/
+.join-us {
+    padding: 150px 0;
+}
+
+.input-l {
+    float: left;
+    width: 414px;
+}
+
+.input-l>input {
+    margin: 20px 0;
+    width: 394px;
+    height: 50px;
+    line-height: 50px;
+    outline: none;
+    background-color: #fff;
+    padding: 0 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+textarea {
+    float: right;
+    margin: 10px 0;
+    width: 394px;
+    height: 221px;
+    outline: none;
+    background-color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    resize: none;
+}
+
+input[type="submit"] {
+    width: 200px;
+}
+
+
+/*轮播样式*/
+.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 707px;
+    overflow: hidden;
+}
+
+.scroll-imgs {
+    /*width: 1600px;*/
+    /*width: 400%;*/
+    height: 100%;
+}
+
+.scroll-imgs:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.scroll-imgs li {
+    float: left;
+    /*width: 400px;*/
+    width: 1920px;
+    height: 100%;
+}
+
+.scroll-imgs li>img {
+    width: 100%;
+    height: 100%;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 50%;
+    background-color: #666;
+    opacity: .5;
+    color: #fff;
+}
+
+.scroll-prevbtn {
+    left: 15px;
+}
+
+.scroll-nextbtn {
+    right: 15px;
+}
+
+.btn-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 24px;
+    text-align: center;
+}
+
+.btn-container>li {
+    display: inline-block;
+    width: 30px;
+    height: 6px;
+    margin: 0 5px;
+    border-radius: 3px;
+    background-color: #666;
+    opacity: .5;
+    cursor: pointer;
+}
+
+.btn-container>li.active {
+    background-color: #fff;
+}
